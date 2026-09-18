@@ -180,19 +180,6 @@
   ul { margin: 0; padding-left: 20px; display: flex; flex-direction: column; gap: 9px; max-width: 65ch; }
   li::marker { color: var(--accent); }
 
-  /* The one place this document admits a gap. Marked, not buried. */
-  .gap {
-    background: var(--accent-tint);
-    border: 1px solid var(--accent-border);
-    border-left: 3px solid var(--accent);
-    border-radius: 4px;
-    padding: 16px 18px;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-  }
-  .gap p { color: var(--text); }
-
   .never {
     background: var(--raised);
     border-radius: 6px;
@@ -221,7 +208,7 @@
   <div class="masthead-inner">
     <div class="wordmark">Vouch</div>
     <h1>Privacy&nbsp;Policy</h1>
-    <div class="updated">Last updated 18 September 2026</div>
+    <div class="updated">Last updated 19 September 2026</div>
   </div>
 </header>
 
@@ -339,10 +326,12 @@
   <section>
     <h2>How long we keep it</h2>
     <p>As long as your account exists.</p>
-    <div class="gap">
-      <h3 style="margin-top:0">There is no delete button in the app yet</h3>
-      <p>Until there is, ask us at the address below and we will delete your account, everything attached to it — properties, turnovers, checklists, damage reports — and your photos from storage, which are removed by hand as part of the same request. We will confirm when it is done.</p>
-    </div>
+    <p><strong>You can delete your account from inside the app</strong>, under Settings. It is immediate and it cannot be undone.</p>
+    <ul>
+      <li><strong>If you are a host</strong>, everything goes with it: your properties, checklists, turnovers, damage reports and every photo in storage. Your cleaners stop seeing your places.</li>
+      <li><strong>If you are a cleaner</strong>, your account and phone number go. The turnovers you finished stay with your hosts as their record that the work was done — with your name removed. Those photos are of their property, not of you, and they are the host's evidence.</li>
+    </ul>
+    <p>The app also clears its own cache on the phone when you sign out or delete, so nothing of yours lingers for the next person to use the device. If you cannot get into the app, write to us instead and we will do the same by hand.</p>
     <p>Analytics events in Firebase expire on Google's own schedule, and are not tied to anything that identifies you once your account is gone.</p>
   </section>
 
@@ -352,7 +341,7 @@
     <ul>
       <li><strong>See</strong> everything we hold about you.</li>
       <li><strong>Correct</strong> anything wrong.</li>
-      <li><strong>Delete</strong> your account and its data — by email for now, as above.</li>
+      <li><strong>Delete</strong> your account and its data — from Settings in the app, or by email.</li>
       <li><strong>Export</strong> your data in a portable form.</li>
     </ul>
     <p>If you are in the UK or the EU, the UK GDPR and the GDPR give you these as legal rights, along with the right to object to processing and the right to complain to your national data protection authority. Our legal basis is <strong>performance of a contract</strong> for the data the app needs in order to work at all, and <strong>legitimate interests</strong> for the analytics and crash reporting that keep it working — a small, identifier-only set that you can object to.</p>
