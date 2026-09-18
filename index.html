@@ -1,0 +1,379 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="How the Vouch app collects, uses and protects your data.">
+<meta name="robots" content="index, follow">
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+  html { color-scheme: light dark; }
+  body { margin: 0; }
+  img { max-width: 100%; }
+</style>
+<title>Vouch Privacy Policy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600&family=Schibsted+Grotesk:wght@400;500;600;700&display=swap">
+
+<style>
+  /* The app's own tokens (src/theme/tokens.ts): ink, brass, paper. */
+  :root {
+    --ground: #F5F3EE;
+    --surface: #FFFFFF;
+    --raised: #EEEBE4;
+    --text: #1B2436;
+    --muted: #5A6270;
+    --subtle: #726A5D;
+    --accent: #8A6829;
+    --accent-deep: #6E5321;
+    --accent-tint: #F3EBD9;
+    --accent-border: #E5D5B4;
+    --line: #E2DFD7;
+    --display: 'Bricolage Grotesque', 'Iowan Old Style', Georgia, serif;
+    --body: 'Schibsted Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --ground: #131924;
+      --surface: #1B2436;
+      --raised: #222C40;
+      --text: #F5F3EE;
+      --muted: rgba(245, 243, 238, 0.68);
+      --subtle: rgba(245, 243, 238, 0.52);
+      --accent: #C9A255;
+      --accent-deep: #DFBD76;
+      --accent-tint: rgba(201, 162, 85, 0.12);
+      --accent-border: rgba(201, 162, 85, 0.3);
+      --line: rgba(245, 243, 238, 0.14);
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --ground: #131924;
+    --surface: #1B2436;
+    --raised: #222C40;
+    --text: #F5F3EE;
+    --muted: rgba(245, 243, 238, 0.68);
+    --subtle: rgba(245, 243, 238, 0.52);
+    --accent: #C9A255;
+    --accent-deep: #DFBD76;
+    --accent-tint: rgba(201, 162, 85, 0.12);
+    --accent-border: rgba(201, 162, 85, 0.3);
+    --line: rgba(245, 243, 238, 0.14);
+  }
+
+  body {
+    background: var(--ground);
+    color: var(--text);
+    font-family: var(--body);
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .masthead {
+    background: var(--text);
+    color: var(--ground);
+    padding-block: 40px 36px;
+    padding-inline: 16px;
+  }
+  .masthead-inner {
+    max-width: 680px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+  .wordmark {
+    font-family: var(--display);
+    font-size: 30px;
+    letter-spacing: -0.02em;
+    color: var(--accent);
+    line-height: 1;
+  }
+  .masthead h1 {
+    font-family: var(--display);
+    font-size: clamp(30px, 7vw, 42px);
+    line-height: 1.12;
+    letter-spacing: -0.02em;
+    margin: 0;
+    text-wrap: balance;
+  }
+  .updated {
+    font-size: 13px;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: rgba(245, 243, 238, 0.6);
+  }
+
+  main {
+    max-width: 680px;
+    margin: 0 auto;
+    padding-inline: 16px;
+    padding-block: 44px 72px;
+    display: flex;
+    flex-direction: column;
+    gap: 44px;
+  }
+
+  section {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  h2 {
+    font-family: var(--display);
+    font-size: 25px;
+    line-height: 1.2;
+    letter-spacing: -0.015em;
+    margin: 0;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--line);
+    text-wrap: balance;
+  }
+
+  h3 {
+    font-family: var(--body);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent-deep);
+    margin: 10px 0 0;
+  }
+
+  p { margin: 0; max-width: 65ch; }
+  strong { font-weight: 600; }
+  a { color: var(--accent-deep); text-decoration-thickness: 1px; text-underline-offset: 2px; }
+  a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
+
+  /* Label/reason pairs, as a grid rather than a table so they stack on a
+     phone instead of scrolling sideways. */
+  .pairs {
+    margin: 0;
+    display: grid;
+    grid-template-columns: minmax(150px, 0.8fr) 1.6fr;
+    gap: 1px;
+    background: var(--line);
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    overflow: hidden;
+  }
+  .pairs dt, .pairs dd {
+    background: var(--surface);
+    margin: 0;
+    padding: 13px 16px;
+  }
+  .pairs dt { font-weight: 600; font-size: 15px; }
+  .pairs dd { color: var(--muted); font-size: 15px; }
+
+  @media (max-width: 540px) {
+    .pairs { grid-template-columns: 1fr; }
+    .pairs dt { padding-bottom: 2px; }
+    .pairs dd { padding-top: 2px; }
+  }
+
+  ul { margin: 0; padding-left: 20px; display: flex; flex-direction: column; gap: 9px; max-width: 65ch; }
+  li::marker { color: var(--accent); }
+
+  /* The one place this document admits a gap. Marked, not buried. */
+  .gap {
+    background: var(--accent-tint);
+    border: 1px solid var(--accent-border);
+    border-left: 3px solid var(--accent);
+    border-radius: 4px;
+    padding: 16px 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .gap p { color: var(--text); }
+
+  .never {
+    background: var(--raised);
+    border-radius: 6px;
+    padding: 18px 20px;
+  }
+
+  .processors { display: flex; flex-direction: column; gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 6px; overflow: hidden; }
+  .processor { background: var(--surface); padding: 14px 16px; display: flex; flex-wrap: wrap; gap: 4px 14px; align-items: baseline; }
+  .processor .who { font-weight: 600; font-size: 15px; min-width: 130px; }
+  .processor .what { color: var(--muted); font-size: 15px; flex: 1 1 220px; }
+
+  footer {
+    border-top: 1px solid var(--line);
+    padding-block: 28px 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  footer .label { font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 600; color: var(--subtle); }
+  footer .mail { font-family: var(--display); font-size: 21px; letter-spacing: -0.01em; }
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="masthead-inner">
+    <div class="wordmark">Vouch</div>
+    <h1>Privacy&nbsp;Policy</h1>
+    <div class="updated">Last updated 18 September 2026</div>
+  </div>
+</header>
+
+<main>
+  <section>
+    <p>Vouch is an app for short-term-rental hosts and the people who clean for them. A host sets up their properties and a cleaning checklist; a cleaner photographs each item before and after, notes what supplies are running low, and reports any damage; the host gets a report.</p>
+    <p>This policy describes what the app collects, why, and who else sees it. It is written against what the app actually does — if you find something here that does not match the app's behaviour, the app is wrong and we want to hear about it.</p>
+    <dl class="pairs">
+      <dt>Responsible</dt>
+      <dd>Melih Dikmen, sole developer, acting as an individual</dd>
+      <dt>Contact</dt>
+      <dd><a href="mailto:melihdeveloper06@gmail.com">melihdeveloper06@gmail.com</a></dd>
+    </dl>
+  </section>
+
+  <section>
+    <h2>What we collect</h2>
+
+    <h3>If you are a host</h3>
+    <dl class="pairs">
+      <dt>Email and password</dt>
+      <dd>To sign you in. The password is stored as a hash and is never readable by us.</dd>
+      <dt>Display name</dt>
+      <dd>To show who you are to the cleaners you invite.</dd>
+      <dt>Interface language</dt>
+      <dd>So the app opens in the language you chose, on any device.</dd>
+      <dt>Properties</dt>
+      <dd>Names and addresses. These are what the app is for. An address is optional — the app works without it.</dd>
+      <dt>Checklists and supply lists</dt>
+      <dd>The templates each turnover is built from.</dd>
+      <dt>Turnovers</dt>
+      <dd>Which property, which cleaner, which date, and how it ended.</dd>
+      <dt>Subscription status</dt>
+      <dd>Whether you have a paid plan, when it expires, and which store it came from.</dd>
+    </dl>
+
+    <h3>If you are a cleaner</h3>
+    <dl class="pairs">
+      <dt>Display name</dt>
+      <dd>So your host can tell your work apart from another cleaner's.</dd>
+      <dt>Phone number</dt>
+      <dd>Your host needs a way to reach you about a job. Visible to the hosts you work for, and to nobody else.</dd>
+      <dt>Interface language</dt>
+      <dd>So the app opens in your language.</dd>
+      <dt>Email and password</dt>
+      <dd><strong>Only if you choose to secure your account.</strong> You can join and work with an invite code alone. Adding an email is what lets you sign in again on a new phone.</dd>
+      <dt>Photos you take</dt>
+      <dd>The before-and-after record of the work.</dd>
+      <dt>Damage notes</dt>
+      <dd>What you saw, in your words, sent to the host.</dd>
+      <dt>Your work record</dt>
+      <dd>Which turnovers you completed, and when.</dd>
+    </dl>
+  </section>
+
+  <section>
+    <h2>Photos</h2>
+    <p>Photos are the heart of the app, so it is worth being exact about them.</p>
+    <ul>
+      <li>They are taken <strong>in the app, with the camera</strong>. Vouch does not read your photo library.</li>
+      <li>They are stored in a <strong>private</strong> bucket. There is no public link to any photo; viewing one produces a short-lived signed link that expires.</li>
+      <li>They are visible to the <strong>cleaner who took them</strong> and the <strong>host who owns that property</strong>. Not to other cleaners, not to other hosts, not to anyone browsing the internet.</li>
+      <li>They are held <strong>on your phone first</strong> and uploaded when there is a connection, so a cleaner with no signal can still finish a job. Once uploaded, the local copy is dropped.</li>
+      <li>A host can export a turnover as a PDF containing those photos. What happens to that PDF after they share it is outside the app's control, and outside this policy.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>On your phone</h2>
+    <p>Your sign-in session, any turnover still waiting to be uploaded, and small preferences such as your chosen language are kept in an <strong>encrypted</strong> store whose key lives in the device keychain. It stays on the device; deleting the app deletes it.</p>
+    <div class="never">
+      <h3 style="margin-top:0">What we never collect</h3>
+      <p style="margin-top:8px">No location. No contacts. No photo library. No microphone or audio — the camera takes stills only, and the app does not ask for microphone permission. No advertising identifier, and no advertising of any kind.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>Analytics and crash reports</h2>
+    <p>We use Google Firebase for three narrow purposes.</p>
+    <ul>
+      <li><strong>Analytics</strong> — to learn whether the product works, which for us means one question: does someone who finished one turnover ever finish another. The app records a small fixed set of events — a property created, a checklist saved, an invite made or accepted, a turnover created, started, finished or abandoned, damage reported, a supply flagged, a PDF made or shared, and a queue of offline photos finishing its upload — along with counts and durations, and which screen was open.</li>
+      <li><strong>Crashlytics</strong> — so a crash gets fixed. Collected from released versions only, never from development builds.</li>
+      <li><strong>Remote Config</strong> — to adjust settings such as photo quality or plan limits without shipping a new version. This only sends settings <em>to</em> your phone.</li>
+    </ul>
+    <p><strong>The only identifier we attach is your account id</strong> — a random value with no meaning outside our database — plus whether you are using the app as a host or as a cleaner. Names, phone numbers, email addresses, property addresses, photos and damage notes are <strong>never</strong> sent to Firebase. A cleaner's identity is not ours to hand to an analytics provider.</p>
+    <p>Firebase collects some technical information of its own, such as device model, operating system version, and approximate region derived from IP address. See <a href="https://policies.google.com/privacy">Google's privacy policy</a>.</p>
+  </section>
+
+  <section>
+    <h2>Payments</h2>
+    <p>Vouch offers an optional paid plan. <strong>We never see your card.</strong> The purchase happens entirely inside Apple's or Google's payment system.</p>
+    <p>We use RevenueCat to check with the store whether a subscription is valid. RevenueCat receives your account id — the same meaningless identifier — along with what you bought and when it renews or expires. It receives no name, email, phone number or content. See <a href="https://www.revenuecat.com/privacy">RevenueCat's privacy policy</a>.</p>
+    <p>We store only the result: which plan, whether it is active, and when it ends.</p>
+  </section>
+
+  <section>
+    <h2>Who can see your data</h2>
+    <p>Within the app, access is enforced by the database itself, not by the app asking politely.</p>
+    <ul>
+      <li>A host sees their own properties, their own turnovers, and the cleaners who accepted their invite.</li>
+      <li>A cleaner sees only the turnovers assigned to them, and only the properties they are assigned to.</li>
+      <li>One host can never see another host's data. One cleaner can never see another cleaner's.</li>
+      <li>A cleaner working for two hosts keeps those two jobs separate.</li>
+    </ul>
+    <h3>Outside the app</h3>
+    <div class="processors">
+      <div class="processor"><span class="who">Supabase</span><span class="what">The database, sign-in, and photo storage</span></div>
+      <div class="processor"><span class="who">Google Firebase</span><span class="what">Analytics events and crash reports</span></div>
+      <div class="processor"><span class="who">RevenueCat</span><span class="what">Subscription status</span></div>
+      <div class="processor"><span class="who">Apple &amp; Google</span><span class="what">The purchase itself</span></div>
+    </div>
+    <p>We do not sell your data. We do not share it with advertisers. We do not use it to train machine-learning models. If we are ever legally compelled to hand something over, we will say so publicly unless the law forbids it.</p>
+  </section>
+
+  <section>
+    <h2>How long we keep it</h2>
+    <p>As long as your account exists.</p>
+    <div class="gap">
+      <h3 style="margin-top:0">There is no delete button in the app yet</h3>
+      <p>Until there is, ask us at the address below and we will delete your account, everything attached to it — properties, turnovers, checklists, damage reports — and your photos from storage, which are removed by hand as part of the same request. We will confirm when it is done.</p>
+    </div>
+    <p>Analytics events in Firebase expire on Google's own schedule, and are not tied to anything that identifies you once your account is gone.</p>
+  </section>
+
+  <section>
+    <h2>Your rights</h2>
+    <p>Wherever you are, you can ask us to:</p>
+    <ul>
+      <li><strong>See</strong> everything we hold about you.</li>
+      <li><strong>Correct</strong> anything wrong.</li>
+      <li><strong>Delete</strong> your account and its data — by email for now, as above.</li>
+      <li><strong>Export</strong> your data in a portable form.</li>
+    </ul>
+    <p>If you are in the UK or the EU, the UK GDPR and the GDPR give you these as legal rights, along with the right to object to processing and the right to complain to your national data protection authority. Our legal basis is <strong>performance of a contract</strong> for the data the app needs in order to work at all, and <strong>legitimate interests</strong> for the analytics and crash reporting that keep it working — a small, identifier-only set that you can object to.</p>
+    <p>To exercise any of these, write to us. We will answer within 30 days.</p>
+  </section>
+
+  <section>
+    <h2>Children</h2>
+    <p>Vouch is a tool for work and is not directed at children. We do not knowingly collect data from anyone under 16. If you believe a child has given us data, write to us and we will remove it.</p>
+  </section>
+
+  <section>
+    <h2>Changes</h2>
+    <p>If this policy changes in a way that affects you, we will say so in the app before the change takes effect — not quietly, and not only by updating the date at the top.</p>
+  </section>
+
+  <footer>
+    <span class="label">Questions, requests, corrections</span>
+    <a class="mail" href="mailto:melihdeveloper06@gmail.com">melihdeveloper06@gmail.com</a>
+  </footer>
+</main>
+
+</body>
+</html>
