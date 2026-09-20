@@ -1,0 +1,276 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Help with the Vouch app: how to invite a cleaner, work offline, manage Pro, and get in touch.">
+<meta name="robots" content="index, follow">
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+  html { color-scheme: light dark; }
+  body { margin: 0; }
+  img { max-width: 100%; }
+</style>
+<title>Vouch Support</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600&family=Schibsted+Grotesk:wght@400;500;600;700&display=swap">
+
+<style>
+  /* The app's own tokens (src/theme/tokens.ts): ink, brass, paper. */
+  :root {
+    --ground: #F5F3EE;
+    --surface: #FFFFFF;
+    --raised: #EEEBE4;
+    --text: #1B2436;
+    --muted: #5A6270;
+    --subtle: #726A5D;
+    --accent: #8A6829;
+    --accent-deep: #6E5321;
+    --accent-tint: #F3EBD9;
+    --accent-border: #E5D5B4;
+    --line: #E2DFD7;
+    --display: 'Bricolage Grotesque', 'Iowan Old Style', Georgia, serif;
+    --body: 'Schibsted Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --ground: #131924;
+      --surface: #1B2436;
+      --raised: #222C40;
+      --text: #F5F3EE;
+      --muted: rgba(245, 243, 238, 0.68);
+      --subtle: rgba(245, 243, 238, 0.52);
+      --accent: #C9A255;
+      --accent-deep: #DFBD76;
+      --accent-tint: rgba(201, 162, 85, 0.12);
+      --accent-border: rgba(201, 162, 85, 0.3);
+      --line: rgba(245, 243, 238, 0.14);
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --ground: #131924;
+    --surface: #1B2436;
+    --raised: #222C40;
+    --text: #F5F3EE;
+    --muted: rgba(245, 243, 238, 0.68);
+    --subtle: rgba(245, 243, 238, 0.52);
+    --accent: #C9A255;
+    --accent-deep: #DFBD76;
+    --accent-tint: rgba(201, 162, 85, 0.12);
+    --accent-border: rgba(201, 162, 85, 0.3);
+    --line: rgba(245, 243, 238, 0.14);
+  }
+
+  body {
+    background: var(--ground);
+    color: var(--text);
+    font-family: var(--body);
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .masthead {
+    background: var(--text);
+    color: var(--ground);
+    padding-block: 40px 36px;
+    padding-inline: 16px;
+  }
+  .masthead-inner {
+    max-width: 680px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+  .wordmark {
+    font-family: var(--display);
+    font-size: 30px;
+    letter-spacing: -0.02em;
+    color: var(--accent);
+    line-height: 1;
+  }
+  .masthead h1 {
+    font-family: var(--display);
+    font-size: clamp(30px, 7vw, 42px);
+    line-height: 1.12;
+    letter-spacing: -0.02em;
+    margin: 0;
+    text-wrap: balance;
+  }
+  .updated {
+    font-size: 13px;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: rgba(245, 243, 238, 0.6);
+  }
+
+  main {
+    max-width: 680px;
+    margin: 0 auto;
+    padding-inline: 16px;
+    padding-block: 44px 72px;
+    display: flex;
+    flex-direction: column;
+    gap: 44px;
+  }
+
+  section {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  h2 {
+    font-family: var(--display);
+    font-size: 25px;
+    line-height: 1.2;
+    letter-spacing: -0.015em;
+    margin: 0;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--line);
+    text-wrap: balance;
+  }
+
+  h3 {
+    font-family: var(--body);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent-deep);
+    margin: 10px 0 0;
+  }
+
+  p { margin: 0; max-width: 65ch; }
+  strong { font-weight: 600; }
+  a { color: var(--accent-deep); text-decoration-thickness: 1px; text-underline-offset: 2px; }
+  a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
+
+  /* Label/reason pairs, as a grid rather than a table so they stack on a
+     phone instead of scrolling sideways. */
+  .pairs {
+    margin: 0;
+    display: grid;
+    grid-template-columns: minmax(150px, 0.8fr) 1.6fr;
+    gap: 1px;
+    background: var(--line);
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    overflow: hidden;
+  }
+  .pairs dt, .pairs dd {
+    background: var(--surface);
+    margin: 0;
+    padding: 13px 16px;
+  }
+  .pairs dt { font-weight: 600; font-size: 15px; }
+  .pairs dd { color: var(--muted); font-size: 15px; }
+
+  @media (max-width: 540px) {
+    .pairs { grid-template-columns: 1fr; }
+    .pairs dt { padding-bottom: 2px; }
+    .pairs dd { padding-top: 2px; }
+  }
+
+  ul { margin: 0; padding-left: 20px; display: flex; flex-direction: column; gap: 9px; max-width: 65ch; }
+  li::marker { color: var(--accent); }
+
+  .never {
+    background: var(--raised);
+    border-radius: 6px;
+    padding: 18px 20px;
+  }
+
+  .processors { display: flex; flex-direction: column; gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 6px; overflow: hidden; }
+  .processor { background: var(--surface); padding: 14px 16px; display: flex; flex-wrap: wrap; gap: 4px 14px; align-items: baseline; }
+  .processor .who { font-weight: 600; font-size: 15px; min-width: 130px; }
+  .processor .what { color: var(--muted); font-size: 15px; flex: 1 1 220px; }
+
+  footer {
+    border-top: 1px solid var(--line);
+    padding-block: 28px 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  footer .label { font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 600; color: var(--subtle); }
+  footer .mail { font-family: var(--display); font-size: 21px; letter-spacing: -0.01em; }
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="masthead-inner">
+    <div class="wordmark">Vouch</div>
+    <h1>Support</h1>
+    <div class="updated">Last updated 20 September 2026</div>
+  </div>
+</header>
+
+<main>
+  <section>
+    <p>Vouch documents short-term-rental turnovers with photographs. A host sets up their properties and a cleaning checklist; a cleaner photographs each item before and after, notes what supplies are running low, and reports any damage; the host gets a report.</p>
+    <dl class="pairs">
+      <dt>Write to</dt>
+      <dd><a href="mailto:melihdeveloper06@gmail.com">melihdeveloper06@gmail.com</a></dd>
+      <dt>Answer within</dt>
+      <dd>Two working days. One person reads it.</dd>
+    </dl>
+    <p>It helps to say which phone you are using, whether you are a host or a cleaner, and what you expected to happen.</p>
+  </section>
+
+  <section>
+    <h2>Getting started</h2>
+
+    <p><strong>How does my cleaner join?</strong></p>
+    <p>From Team, tap <em>Invite a cleaner</em> and send them the code. They open Vouch, choose <em>I do the cleaning</em>, and enter it. They need no account and no email address. The code is good for your whole account rather than a single property — you assign properties afterwards.</p>
+
+    <p><strong>Does it work without a signal?</strong></p>
+    <p>Yes. Photos are saved on the phone and send themselves when a connection comes back, so a basement flat with no bars does not stop the job. Do not uninstall the app before the queue has emptied.</p>
+
+    <p><strong>How do I get the report?</strong></p>
+    <p>Open the turnover once it is finished and tap <em>Share PDF report</em>. It can go to a guest, an owner or an insurer.</p>
+  </section>
+
+  <section>
+    <h2>Accounts</h2>
+
+    <p><strong>I am a cleaner and I have changed phone.</strong></p>
+    <p>Only an account that has been secured survives the move. In Settings, <em>Set a password</em> asks for an email address and a password, and you sign in with those on the new phone. Until you confirm the link in that email, the account still exists only on the old one.</p>
+
+    <p><strong>How do I delete my account?</strong></p>
+    <p>Settings, then <em>Delete account</em>. It is immediate and cannot be undone. A host's properties, checklists, turnovers, damage reports and photos all go with it. A cleaner's account and phone number go; the turnovers they finished stay with their hosts as the record that the work was done, with the name removed. Your customer record at the payment processor is deleted in the same step.</p>
+    <p>If you can no longer open the app, write to us and we will do the same by hand.</p>
+  </section>
+
+  <section>
+    <h2>Free and Pro</h2>
+
+    <p><strong>What does the free plan include?</strong></p>
+    <p>One property and one cleaner, with every feature. Add a second property and you move to Pro.</p>
+
+    <p><strong>How do I cancel Pro?</strong></p>
+    <p>Subscriptions are billed by the store, so they are cancelled there rather than in Vouch. On iPhone: open Settings, tap your name, then <em>Subscriptions</em>, and choose Vouch. On Android: open the Play Store, tap your profile picture, then <em>Payments and subscriptions</em>. Cancelling stops the next renewal; the plan stays active until the period you have paid for ends.</p>
+
+    <p><strong>I paid but the app does not show Pro.</strong></p>
+    <p>Make sure you are signed in to Vouch with the same account you bought it on, then reopen the app. If it still does not appear, write to us with the date of purchase.</p>
+  </section>
+
+  <section>
+    <h2>Privacy</h2>
+    <p>What the app collects, who can see it, and how long it is kept are set out in the <a href="../">privacy policy</a>.</p>
+  </section>
+
+  <footer>
+    <span class="label">Questions, requests, corrections</span>
+    <a class="mail" href="mailto:melihdeveloper06@gmail.com">melihdeveloper06@gmail.com</a>
+  </footer>
+</main>
+
+</body>
+</html>
