@@ -1,0 +1,245 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Your Vouch email address is confirmed.">
+<meta name="robots" content="noindex">
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+  html { color-scheme: light dark; }
+  body { margin: 0; }
+  img { max-width: 100%; }
+</style>
+<title>Email Confirmed</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600&family=Schibsted+Grotesk:wght@400;500;600;700&display=swap">
+
+<style>
+  /* The app's own tokens (src/theme/tokens.ts): ink, brass, paper. */
+  :root {
+    --ground: #F5F3EE;
+    --surface: #FFFFFF;
+    --raised: #EEEBE4;
+    --text: #1B2436;
+    --muted: #5A6270;
+    --subtle: #726A5D;
+    --accent: #8A6829;
+    --accent-deep: #6E5321;
+    --accent-tint: #F3EBD9;
+    --accent-border: #E5D5B4;
+    --line: #E2DFD7;
+    --display: 'Bricolage Grotesque', 'Iowan Old Style', Georgia, serif;
+    --body: 'Schibsted Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --ground: #131924;
+      --surface: #1B2436;
+      --raised: #222C40;
+      --text: #F5F3EE;
+      --muted: rgba(245, 243, 238, 0.68);
+      --subtle: rgba(245, 243, 238, 0.52);
+      --accent: #C9A255;
+      --accent-deep: #DFBD76;
+      --accent-tint: rgba(201, 162, 85, 0.12);
+      --accent-border: rgba(201, 162, 85, 0.3);
+      --line: rgba(245, 243, 238, 0.14);
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --ground: #131924;
+    --surface: #1B2436;
+    --raised: #222C40;
+    --text: #F5F3EE;
+    --muted: rgba(245, 243, 238, 0.68);
+    --subtle: rgba(245, 243, 238, 0.52);
+    --accent: #C9A255;
+    --accent-deep: #DFBD76;
+    --accent-tint: rgba(201, 162, 85, 0.12);
+    --accent-border: rgba(201, 162, 85, 0.3);
+    --line: rgba(245, 243, 238, 0.14);
+  }
+
+  body {
+    background: var(--ground);
+    color: var(--text);
+    font-family: var(--body);
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .masthead {
+    background: var(--text);
+    color: var(--ground);
+    padding-block: 40px 36px;
+    padding-inline: 16px;
+  }
+  .masthead-inner {
+    max-width: 680px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+  .wordmark {
+    font-family: var(--display);
+    font-size: 30px;
+    letter-spacing: -0.02em;
+    color: var(--accent);
+    line-height: 1;
+  }
+  .masthead h1 {
+    font-family: var(--display);
+    font-size: clamp(30px, 7vw, 42px);
+    line-height: 1.12;
+    letter-spacing: -0.02em;
+    margin: 0;
+    text-wrap: balance;
+  }
+  .updated {
+    font-size: 13px;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: rgba(245, 243, 238, 0.6);
+  }
+
+  main {
+    max-width: 680px;
+    margin: 0 auto;
+    padding-inline: 16px;
+    padding-block: 44px 72px;
+    display: flex;
+    flex-direction: column;
+    gap: 44px;
+  }
+
+  section {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  h2 {
+    font-family: var(--display);
+    font-size: 25px;
+    line-height: 1.2;
+    letter-spacing: -0.015em;
+    margin: 0;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--line);
+    text-wrap: balance;
+  }
+
+  h3 {
+    font-family: var(--body);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent-deep);
+    margin: 10px 0 0;
+  }
+
+  p { margin: 0; max-width: 65ch; }
+  strong { font-weight: 600; }
+  a { color: var(--accent-deep); text-decoration-thickness: 1px; text-underline-offset: 2px; }
+  a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
+
+  /* Label/reason pairs, as a grid rather than a table so they stack on a
+     phone instead of scrolling sideways. */
+  .pairs {
+    margin: 0;
+    display: grid;
+    grid-template-columns: minmax(150px, 0.8fr) 1.6fr;
+    gap: 1px;
+    background: var(--line);
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    overflow: hidden;
+  }
+  .pairs dt, .pairs dd {
+    background: var(--surface);
+    margin: 0;
+    padding: 13px 16px;
+  }
+  .pairs dt { font-weight: 600; font-size: 15px; }
+  .pairs dd { color: var(--muted); font-size: 15px; }
+
+  @media (max-width: 540px) {
+    .pairs { grid-template-columns: 1fr; }
+    .pairs dt { padding-bottom: 2px; }
+    .pairs dd { padding-top: 2px; }
+  }
+
+  ul { margin: 0; padding-left: 20px; display: flex; flex-direction: column; gap: 9px; max-width: 65ch; }
+  li::marker { color: var(--accent); }
+
+  .never {
+    background: var(--raised);
+    border-radius: 6px;
+    padding: 18px 20px;
+  }
+
+  .processors { display: flex; flex-direction: column; gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 6px; overflow: hidden; }
+  .processor { background: var(--surface); padding: 14px 16px; display: flex; flex-wrap: wrap; gap: 4px 14px; align-items: baseline; }
+  .processor .who { font-weight: 600; font-size: 15px; min-width: 130px; }
+  .processor .what { color: var(--muted); font-size: 15px; flex: 1 1 220px; }
+
+  footer {
+    border-top: 1px solid var(--line);
+    padding-block: 28px 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  footer .label { font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 600; color: var(--subtle); }
+  footer .mail { font-family: var(--display); font-size: 21px; letter-spacing: -0.01em; }
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="masthead-inner">
+    <div class="wordmark">Vouch</div>
+    <h1>Email confirmed</h1>
+  </div>
+</header>
+
+<main>
+  <section>
+    <p>That is the only thing this link had to do. Your address is confirmed and the account is ready.</p>
+    <p><strong>Go back to Vouch on your phone and sign in.</strong> If the app is already open, close it and open it again.</p>
+    <p>You can close this page.</p>
+  </section>
+
+  <section>
+    <h2>In other languages</h2>
+    <dl class="pairs">
+      <dt>Türkçe</dt>
+      <dd>E-posta adresin doğrulandı. Telefonundaki Vouch uygulamasına dönüp giriş yapabilirsin.</dd>
+      <dt>Español</dt>
+      <dd>Tu correo está confirmado. Vuelve a Vouch en tu teléfono e inicia sesión.</dd>
+      <dt>Русский</dt>
+      <dd>Ваш адрес подтверждён. Вернитесь в приложение Vouch на телефоне и войдите.</dd>
+    </dl>
+  </section>
+
+  <section>
+    <h2>If sign-in still refuses you</h2>
+    <p>Confirmation happens before you reach this page, so the address is already verified — a refusal after this is almost always the password rather than the email. Write to us and we will look.</p>
+  </section>
+
+  <footer>
+    <span class="label">Questions, requests, corrections</span>
+    <a class="mail" href="mailto:melihdeveloper06@gmail.com">melihdeveloper06@gmail.com</a>
+  </footer>
+</main>
+
+</body>
+</html>
